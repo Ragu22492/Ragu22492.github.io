@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Raguraj Rajendran — Embedded Software Engineer</title>
+<meta name="description" content="Portfolio of Raguraj Rajendran, Embedded Software Engineer specializing in robotics, IoT, and firmware development." />
+<style>
+  :root {
+    --bg: #0b1120;
+    --bg-alt: #111a2e;
+    --card: #131f38;
+    --border: #223052;
+    --text: #e2e8f0;
+    --text-dim: #94a3b8;
+    --accent: #22d3ee;
+    --accent-soft: rgba(34, 211, 238, 0.12);
+    --amber: #fbbf24;
+    --maxw: 920px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  header.nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(11, 17, 32, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-weight: 700;
+    color: var(--text);
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+  }
+  .brand span { color: var(--accent); }
+  nav.links { display: flex; gap: 22px; }
+  nav.links a { color: var(--text-dim); font-size: 0.92rem; font-weight: 500; }
+  nav.links a:hover { color: var(--accent); text-decoration: none; }
+  .nav-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.4rem; cursor: pointer; }
+
+  /* Hero */
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+  }
+  .hero .eyebrow {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: clamp(2.1rem, 5vw, 3.2rem);
+    margin: 0 0 10px 0;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .hero .role {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    margin-bottom: 22px;
+  }
+  .hero .role strong { color: var(--text); font-weight: 600; }
+  .hero p.tagline {
+    max-width: 620px;
+    margin: 0 auto 30px;
+    color: var(--text-dim);
+    font-size: 1rem;
+  }
+  .btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn.primary {
+    background: var(--accent);
+    color: #04222b;
+    border-color: var(--accent);
+  }
+  .btn.primary:hover { text-decoration: none; opacity: 0.9; }
+  .btn.ghost { color: var(--text); }
+  .btn.ghost:hover { text-decoration: none; border-color: var(--accent); color: var(--accent); }
+
+  .contact-row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 26px;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+  }
+  .contact-row a { color: var(--text-dim); }
+  .contact-row a:hover { color: var(--accent); }
+
+  /* Sections */
+  section { padding: 56px 0; border-top: 1px solid var(--border); }
+  section h2 {
+    font-size: 1.5rem;
+    margin: 0 0 28px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  section h2 .num { color: var(--accent); font-family: ui-monospace, monospace; font-size: 1.05rem; }
+
+  /* About */
+  .about p { color: var(--text-dim); max-width: 760px; }
+
+  /* Skills */
+  .skill-group { margin-bottom: 20px; }
+  .skill-group h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    margin: 0 0 10px 0;
+    font-weight: 600;
+  }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid rgba(34,211,238,0.25);
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  }
+
+  /* Experience timeline */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 34px; }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-item::before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+  }
+  .tl-item.current::before { background: var(--accent); }
+  .tl-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .tl-role { font-weight: 700; font-size: 1.02rem; }
+  .tl-company { color: var(--accent); font-weight: 500; }
+  .tl-date {
+    font-family: ui-monospace, monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+  .tl-item ul { margin: 6px 0 0 0; padding-left: 18px; color: var(--text-dim); font-size: 0.94rem; }
+  .tl-item ul li { margin-bottom: 4px; }
+  .badge-current {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #04222b;
+    background: var(--accent);
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  /* Projects */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .project-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+    color: var(--text);
+  }
+  .project-card p {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+  }
+
+  /* Education / Certs */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  @media (max-width: 680px) { .grid-2 { grid-template-columns: 1fr; gap: 30px; } }
+  .edu-item { margin-bottom: 14px; }
+  .edu-item .title { font-weight: 600; }
+  .edu-item .sub { color: var(--text-dim); font-size: 0.9rem; }
+  ul.plain-list { margin: 0; padding-left: 18px; color: var(--text-dim); }
+  ul.plain-list li { margin-bottom: 8px; }
+  ul.plain-list b { color: var(--text); }
+
+  /* Achievements */
+  .ach-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .ach-card {
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 14px;
+    color: var(--text-dim);
+    font-size: 0.92rem;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 34px 0 50px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--text-dim); margin: 0 8px; }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 680px) {
+    nav.links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg-alt); flex-direction: column; padding: 16px 24px; border-bottom: 1px solid var(--border); gap: 14px; }
+    nav.links.open { display: flex; }
+    .nav-toggle { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">Raguraj<span>.</span>Rajendran</div>
+    <nav class="links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Embedded Software Engineer</div>
+    <h1>Raguraj Rajendran</h1>
+    <div class="role">8+ years building <strong>firmware, IoT, and robotics software</strong> — from bare-metal MCUs to fleet-scale device platforms</div>
+    <p class="tagline">
+      Currently building embedded robotics software at Rapyuta Robotics. Previously shipped IoT firmware
+      for smart energy meters, nurse-call systems, and industrial automation across 10,000+ deployed devices.
+    </p>
+    <div class="btn-row">
+      <a class="btn primary" href="assets/RagurajRajendran_SeniorFirmwareEngineer_2026.pdf" target="_blank" rel="noopener">Download Résumé</a>
+      <a class="btn ghost" href="#contact">Get in touch</a>
+    </div>
+    <div class="contact-row">
+      <a href="mailto:ragu.22492@gmail.com">ragu.22492@gmail.com</a>
+      <a href="tel:+917010847076">+91 70108 47076</a>
+      <a href="https://www.linkedin.com/in/raguraj-rajendran-548769200" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/Ragu22492" target="_blank" rel="noopener">GitHub</a>
+      <span>Chennai, India</span>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about">
+    <h2><span class="num">01.</span> About</h2>
+    <p>
+      Embedded Software Engineer with 8+ years of experience in embedded systems, robotics software, and IoT
+      solutions. Expertise in firmware architecture, Bluetooth Low Energy (BLE), power optimization, and secure
+      firmware updates. Proficient in ESP32, STM32, and nRF52 microcontrollers, with a strong background in
+      FreeRTOS, Zephyr RTOS, and secure embedded development. Recent experience developing ROS-based robotics
+      software, drivetrain (motor and encoder) control, and Linux/Catkin build systems at a Japanese robotics
+      company. Adept at debugging, troubleshooting, and optimizing low-power battery-operated IoT edge devices
+      and robotics platforms for scalability and reliability. Experienced working with UK-based and Japanese
+      product clients and contributing to CE-certified products.
+    </p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2><span class="num">02.</span> Skills</h2>
+
+    <div class="skill-group">
+      <h3>Embedded Systems</h3>
+      <div class="pills">
+        <span class="pill">ESP32</span><span class="pill">STM32F4</span><span class="pill">nRF52840</span>
+        <span class="pill">Atmel Microcontrollers</span><span class="pill">Nordic SoCs</span>
+        <span class="pill">Motor & Encoder Control (Drivetrain)</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Programming</h3>
+      <div class="pills">
+        <span class="pill">C</span><span class="pill">Python</span><span class="pill">Embedded C++</span><span class="pill">Linux Shell Scripting</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>RTOS &amp; Firmware</h3>
+      <div class="pills">
+        <span class="pill">FreeRTOS</span><span class="pill">Zephyr RTOS</span><span class="pill">Bare-Metal Programming</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Robotics &amp; Build Systems</h3>
+      <div class="pills">
+        <span class="pill">ROS</span><span class="pill">Catkin</span><span class="pill">Linux</span><span class="pill">STM32-Linux Build System</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Communication Protocols</h3>
+      <div class="pills">
+        <span class="pill">SPI</span><span class="pill">I2C</span><span class="pill">UART</span><span class="pill">CAN</span>
+        <span class="pill">BLE</span><span class="pill">MQTT(S)</span><span class="pill">MODBUS</span><span class="pill">HTTPS</span>
+        <span class="pill">SFTP</span><span class="pill">LoRaWAN</span><span class="pill">RS485</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Security</h3>
+      <div class="pills">
+        <span class="pill">Secure Boot</span><span class="pill">Flash Encryption</span><span class="pill">AES</span>
+        <span class="pill">SHA256</span><span class="pill">TLS</span><span class="pill">PKI Authentication</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Tools</h3>
+      <div class="pills">
+        <span class="pill">STM32CubeIDE</span><span class="pill">ESP-IDF</span><span class="pill">Segger Embedded Studio</span>
+        <span class="pill">Keil</span><span class="pill">JTAG/SWD</span><span class="pill">OpenOCD</span><span class="pill">Wireshark</span>
+        <span class="pill">Git</span><span class="pill">GitLab CI/CD</span><span class="pill">Bitbucket</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2><span class="num">03.</span> Experience</h2>
+    <div class="timeline">
+
+      <div class="tl-item current">
+        <div class="tl-head">
+          <div><span class="tl-role">Embedded Software Engineer</span> <span class="badge-current">Current</span><br/>
+          <span class="tl-company">Rapyuta Robotics</span> · Chennai (Japanese Robotics Company)</div>
+          <div class="tl-date">Sep 2025 – Present</div>
+        </div>
+        <ul>
+          <li>Serve as component owner for embedded robotics software modules, driving new feature development, enhancements, and performance optimization.</li>
+          <li>Own end-to-end software responsibilities from design through deployment, maintaining structured software change tracking and records.</li>
+          <li>Collaborate closely with cross-functional hardware, robotics, and firmware teams to deliver integrated robotics solutions.</li>
+          <li>Develop and maintain drivetrain control software, including motor and encoder interfacing, for robotics platforms.</li>
+          <li>Build and maintain software using ROS, Linux, and the Catkin build system, alongside STM32-Linux based build pipelines.</li>
+          <li>Work with Zephyr RTOS and MCU firmware for embedded robotics components.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <div><span class="tl-role">Senior Firmware Engineer</span><br/>
+          <span class="tl-company">NGP Websmart Pvt Ltd</span> · Chennai</div>
+          <div class="tl-date">Mar 2022 – Aug 2025</div>
+        </div>
+        <ul>
+          <li>Designed and developed firmware for Smart Energy Meter, Energy Saver for 3ph Motor, LoRa/MODBUS Gateways, and Environmental Sensor nodes.</li>
+          <li>Developed firmware for ESP32-S3, STM32F4, and nRF52840, ensuring ultra-low-power consumption with optimized deep sleep cycles.</li>
+          <li>Built a remote IoT device management platform with real-time device health monitoring and firmware updates.</li>
+          <li>Implemented secure OTA updates, flash encryption, and TLS-based secure communication.</li>
+          <li>Designed and implemented an embedded control system to optimize energy consumption in 3-phase induction motors using thyristor-based phase angle control (STM32 + STM32CubeIDE) with real-time power monitoring and adaptive load control.</li>
+          <li>Designed a custom bootloader for the STM32F411 series controller for secure OTA firmware updates.</li>
+          <li>Designed a fault-tolerant state machine for GSM-based remote connectivity, reducing downtime by 30%.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <div><span class="tl-role">Embedded Software Engineer</span><br/>
+          <span class="tl-company">Kalycito Infotech Pvt Ltd</span> · Coimbatore (worked onsite at Robert Bosch)</div>
+          <div class="tl-date">Aug 2021 – Feb 2022</div>
+        </div>
+        <ul>
+          <li>Developed and executed SET and KUNIT test cases for existing driver files, ensuring robust functionality.</li>
+          <li>Utilized static code analysis tools to identify and resolve warnings and bugs, improving code quality.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <div><span class="tl-role">Embedded Engineer</span><br/>
+          <span class="tl-company">Rajmall Inventives</span> · Chennai</div>
+          <div class="tl-date">Jan 2020 – Aug 2021</div>
+        </div>
+        <ul>
+          <li>Designed and implemented BLE 5.0 and LoRa communication protocols for real-time nurse call systems.</li>
+          <li>Designed a BLE Mesh network for secure node-to-node and many-to-one communication.</li>
+          <li>Created OTA firmware update mechanisms over Bluetooth with public-private key security pairing.</li>
+          <li>Board bring-up and initial firmware testing for new embedded hardware.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <div><span class="tl-role">Embedded Engineer</span><br/>
+          <span class="tl-company">Chiptest Engineering Ltd</span> · Chennai</div>
+          <div class="tl-date">Jan 2019 – Jan 2020</div>
+        </div>
+        <ul>
+          <li>Worked on home and industrial automation projects, controlling appliances over the internet with both online and offline operation modes.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <div><span class="tl-role">Executive – Manufacturing Services</span><br/>
+          <span class="tl-company">NewGen Knowledge Works Pvt Ltd</span></div>
+          <div class="tl-date">Dec 2015 – Jan 2019</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2><span class="num">04.</span> Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>Robotics Drivetrain Control</h3>
+        <p>Motor and encoder control software for robotics drivetrain systems using ROS and embedded MCU firmware, enabling reliable real-time motion control.</p>
+      </div>
+      <div class="project-card">
+        <h3>IoT Security Implementation</h3>
+        <p>Public-private key encryption and TLS security for MQTT-based IoT devices, enhancing security compliance.</p>
+      </div>
+      <div class="project-card">
+        <h3>Power Optimization for IoT</h3>
+        <p>Extended battery life by 30% through deep-sleep modes, adaptive duty cycling, and ultra-low-power firmware optimization.</p>
+      </div>
+      <div class="project-card">
+        <h3>Firmware Architecture</h3>
+        <p>Multi-threaded RTOS-based firmware with task prioritization and an event-driven state machine.</p>
+      </div>
+      <div class="project-card">
+        <h3>Automated Manufacturing Testing</h3>
+        <p>Automated testing framework for mass production, reducing testing time by 40%.</p>
+      </div>
+      <div class="project-card">
+        <h3>BLE Application Development</h3>
+        <p>Custom BLE services and profiles for seamless device communication, improving data throughput and connection stability.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap grid-2">
+    <div>
+      <h2><span class="num">05.</span> Education</h2>
+      <div class="edu-item">
+        <div class="title">Bachelor of Electrical and Electronics Engineering</div>
+        <div class="sub">Thangavelu Engineering College, 2014</div>
+      </div>
+      <h2 style="margin-top:34px;"><span class="num">06.</span> Achievements</h2>
+      <div class="ach-grid">
+        <div class="ach-card">Took ownership as component owner for robotics embedded software at Rapyuta Robotics.</div>
+        <div class="ach-card">Deployed multiple IoT products, scaling to 10,000+ devices in production.</div>
+        <div class="ach-card">Designed a secure boot mechanism, preventing unauthorized firmware access.</div>
+        <div class="ach-card">Reduced power consumption by 30% via software-controlled dynamic power management.</div>
+        <div class="ach-card">Built an automated provisioning system, cutting manual setup time by 50%.</div>
+      </div>
+    </div>
+    <div>
+      <h2><span class="num">07.</span> Certifications</h2>
+      <ul class="plain-list">
+        <li><b>Advanced Embedded Systems</b> — Vector India Institute, Chennai</li>
+        <li><b>IoT Hacking &amp; Embedded Data Security</b> — Nullcon, Goa</li>
+        <li><b>Mastering RTOS &amp; Embedded AI</b> — Udemy</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap" style="text-align:center;">
+    <h2 style="justify-content:center;"><span class="num">08.</span> Get in touch</h2>
+    <p style="color:var(--text-dim); max-width:520px; margin:0 auto 26px;">
+      Open to embedded, firmware, and robotics software roles. Feel free to reach out.
+    </p>
+    <div class="btn-row">
+      <a class="btn primary" href="mailto:ragu.22492@gmail.com">Email me</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/raguraj-rajendran-548769200" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn ghost" href="https://github.com/Ragu22492" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>&copy; <span id="year"></span> Raguraj Rajendran · Built &amp; hosted on GitHub Pages</div>
+  <div style="margin-top:8px;">
+    <a href="mailto:ragu.22492@gmail.com">Email</a>·
+    <a href="tel:+917010847076">Phone</a>·
+    <a href="https://www.linkedin.com/in/raguraj-rajendran-548769200" target="_blank" rel="noopener">LinkedIn</a>·
+    <a href="https://github.com/Ragu22492" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function () {
+    links.classList.toggle('open');
+  });
+  links.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { links.classList.remove('open'); });
+  });
+</script>
+
+</body>
+</html>
