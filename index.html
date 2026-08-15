@@ -237,6 +237,50 @@
     font-size: 0.9rem;
   }
 
+  /* Open Source */
+  .oss-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 24px;
+  }
+  .oss-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .oss-repo {
+    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+  }
+  .oss-card h3 { margin: 0; font-size: 1.05rem; color: var(--text); }
+  .oss-status {
+    background: rgba(34,211,238,0.12);
+    color: var(--accent);
+    border: 1px solid rgba(34,211,238,0.25);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 3px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+  .oss-card p { color: var(--text-dim); font-size: 0.92rem; margin: 0 0 16px 0; }
+  .oss-card code {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    color: var(--accent);
+  }
+
   /* Education / Certs */
   .grid-2 {
     display: grid;
@@ -291,6 +335,7 @@
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
+      <a href="#opensource">Open Source</a>
       <a href="#education">Education</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -518,15 +563,37 @@
   </div>
 </section>
 
+<section id="opensource">
+  <div class="wrap">
+    <h2><span class="num">05.</span> Open Source</h2>
+    <div class="oss-card">
+      <div class="oss-head">
+        <div>
+          <div class="oss-repo">zephyrproject-rtos/zephyr</div>
+          <h3>drivers: i2c: stm32: ignore spurious BERR in controller mode</h3>
+        </div>
+        <span class="oss-status">Merged</span>
+      </div>
+      <p>
+        Debugged a spurious Bus Error (BERR) flag raised by STM32 I2C V1/V2 peripherals during controller-mode
+        operation — a behavior documented across multiple STM32 errata sheets. Implemented a driver-level fix
+        that clears the false BERR flag without aborting the transfer, while preserving genuine error reporting
+        in target mode. Landed in both <code>i2c_stm32_v1.c</code> and <code>i2c_stm32_v2.c</code>.
+      </p>
+      <a class="btn ghost" href="https://github.com/zephyrproject-rtos/zephyr/pull/107883" target="_blank" rel="noopener">View PR on GitHub &rarr;</a>
+    </div>
+  </div>
+</section>
+
 <section id="education">
   <div class="wrap grid-2">
     <div>
-      <h2><span class="num">05.</span> Education</h2>
+      <h2><span class="num">06.</span> Education</h2>
       <div class="edu-item">
         <div class="title">Bachelor of Electrical and Electronics Engineering</div>
         <div class="sub">Thangavelu Engineering College, 2014</div>
       </div>
-      <h2 style="margin-top:34px;"><span class="num">06.</span> Achievements</h2>
+      <h2 style="margin-top:34px;"><span class="num">07.</span> Achievements</h2>
       <div class="ach-grid">
         <div class="ach-card">Took ownership as component owner for robotics embedded software at Rapyuta Robotics.</div>
         <div class="ach-card">Deployed multiple IoT products, scaling to 10,000+ devices in production.</div>
@@ -536,7 +603,7 @@
       </div>
     </div>
     <div>
-      <h2><span class="num">07.</span> Certifications</h2>
+      <h2><span class="num">08.</span> Certifications</h2>
       <ul class="plain-list">
         <li><b>Advanced Embedded Systems</b> — Vector India Institute, Chennai</li>
         <li><b>IoT Hacking &amp; Embedded Data Security</b> — Nullcon, Goa</li>
@@ -548,7 +615,7 @@
 
 <section id="contact">
   <div class="wrap" style="text-align:center;">
-    <h2 style="justify-content:center;"><span class="num">08.</span> Get in touch</h2>
+    <h2 style="justify-content:center;"><span class="num">09.</span> Get in touch</h2>
     <p style="color:var(--text-dim); max-width:520px; margin:0 auto 26px;">
       Open to embedded, firmware, and robotics software roles. Feel free to reach out.
     </p>
